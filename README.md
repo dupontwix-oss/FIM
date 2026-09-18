@@ -76,9 +76,9 @@ surveillés — jamais d'écriture, sous peine de compromettre la fiabilité du 
    changent légitimement souvent (logs applicatifs, caches).
 6. **Ne mets jamais** : ce mot de passe en clair dans `config.yaml` de façon permanente sans protection : au minimum, restreins les droits du fichier :
 
-bash
+```bash
 sudo chmod 600 /opt/fim/config.yaml
-
+```
 ## Architecture du code
 
 ```
