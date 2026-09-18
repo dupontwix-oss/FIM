@@ -104,3 +104,76 @@ fim/
   avec une clé HMAC pour détecter une falsification directe de la base).
 - Pas d'interface web incluse ; `report`/`status` sont en CLI. Une API REST légère
   (FastAPI) au-dessus de la même base serait une extension naturelle pour un dashboard.
+
+## Preuve de concept (POC)
+
+Cette section documente un test de bout en bout du FIM, démontrant la détection
+temps réel des changements de fichiers et l'envoi effectif des alertes email.
+
+### Scénario de test
+
+1. Création d'un fichier de test dans un répertoire surveillé
+2. Modification du fichier critique `/etc/passwd`
+3. Suppression du fichier de test
+
+### 1. Détection en temps réel
+
+#### Création de fichier
+
+Un fichier créé dans un répertoire surveillé (`/etc`) est détecté immédiatement
+par le watcher, sans attendre le rescan périodique.
+
+```bash
+sudo touch /etc/test-fim.txt
+```
+
+![Détection de création en temps réel](images/detection-creation.png)
+
+#### Modification de `/etc/passwd`
+
+Toute modification du fichier `/etc/passwd` — cible sensible classique pour
+la persistance d'un attaquant (ajout d'utilisateur, élévation de privilèges) —
+est détectée par comparaison de hash SHA-256.
+
+```bash
+sudo useradd testuser
+```
+
+![Détection de modification de /etc/passwd](images/detection-modification-passwd.png)
+
+#### Suppression de fichier
+
+```bash
+sudo rm /etc/test-fim.txt
+```
+
+![Détection de suppression en temps réel](images/detection-suppression.png)
+
+### 2. Notifications email reçues
+
+Chaque événement détecté déclenche automatiquement un email d'alerte contenant
+le type d'événement, le chemin du fichier, et les détails du changement.
+
+#### Email — création de fichier
+
+![Email d'alerte - création](images/email-creation.png)
+
+#### Email — suppression de fichier
+
+![Email d'alerte - suppression](images/email-suppression.png)
+
+#### Email — modification de /etc/passwd
+
+![Email d'alerte - modification passwd](images/email-modification-passwd.png)
+
+### Résultat
+
+| Événement                     | Détecté en temps réel | Email reçu |
+|-------------------------------|:----------------------:|:----------:|
+| Création de fichier           | ✅                      | ✅          |
+| Modification de /etc/passwd   | ✅                      | ✅          |
+| Suppression de fichier        | ✅                      | ✅          |
+
+Le FIM détecte et notifie correctement les trois types d'événements critiques
+en environnement de test, validant le fonctionnement de la chaîne complète :
+surveillance → base de données → alerting.
