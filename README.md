@@ -47,6 +47,8 @@ sudo cp -r . /opt/fim/
 sudo useradd -r -s /nologin fim
 cd /opt/fim && sudo python3 -m venv venv && sudo ./venv/bin/pip install -r requirements.txt
 sudo cp systemd/fim.service /etc/systemd/system/
+sudo chown -R fim:fim /opt/fim
+sudo systemctl restart fim
 sudo systemctl daemon-reload
 sudo systemctl enable --now fim
 sudo journalctl -u fim -f
@@ -72,6 +74,10 @@ surveillés — jamais d'écriture, sous peine de compromettre la fiabilité du 
    toute la flotte.
 5. **Ne pas oublier les faux positifs** : ajustez `exclude_patterns` pour les fichiers qui
    changent légitimement souvent (logs applicatifs, caches).
+6. **Ne mets jamais** : ce mot de passe en clair dans `config.yaml` de façon permanente sans protection : au minimum, restreins les droits du fichier :
+
+bash
+sudo chmod 600 /opt/fim/config.yaml
 
 ## Architecture du code
 
