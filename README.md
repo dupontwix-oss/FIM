@@ -127,7 +127,7 @@ par le watcher, sans attendre le rescan périodique.
 sudo touch /etc/test-fim.txt
 ```
 
-![Détection de création en temps réel](images/detection-creation.png)
+![Détection de création en temps réel](Detection_in_Real_time.png)
 
 #### Modification de `/etc/passwd`
 
