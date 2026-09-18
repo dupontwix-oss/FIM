@@ -1,0 +1,43 @@
+# Configuration FIM - copier vers config.yaml et adapter
+
+# Répertoires ou fichiers à surveiller (récursif pour les répertoires)
+watch_paths:
+  - /etc
+  - /var/www/html
+  - /usr/bin
+
+# Motifs à exclure (style fnmatch), ex: fichiers temporaires, logs qui changent en permanence
+exclude_patterns:
+  - "*.log"
+  - "*.tmp"
+  - "*/cache/*"
+  - "*/__pycache__/*"
+
+hash_algorithm: sha256          # sha256 (recommandé) | sha512 | sha1
+
+# Rescan complet périodique en plus du temps réel (rattrape les événements manqués,
+# ex: système éteint, volume réseau, edge cases OS)
+periodic_rescan_seconds: 3600   # toutes les heures
+
+log_file: fim.log
+
+database:
+  type: sqlite                  # sqlite | postgresql
+  path: fim.db                  # utilisé si sqlite
+  # url: "postgresql://fim_user:motdepasse@db-host:5432/fim_db"   # utilisé si postgresql
+
+alerts:
+  email:
+    enabled: false
+    smtp_server: smtp.entreprise.com
+    smtp_port: 587
+    use_tls: true
+    username: alerts@entreprise.com
+    password: "CHANGE_ME"
+    from_addr: alerts@entreprise.com
+    to_addrs:
+      - secops@entreprise.com
+
+  slack:
+    enabled: false
+    webhook_url: "https://hooks.slack.com/services/XXX/YYY/ZZZ"
