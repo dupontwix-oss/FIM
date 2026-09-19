@@ -133,9 +133,9 @@ sudo touch /etc/test-fim.txt
 sudo rm /etc/test-fim.txt
 ```
 
-![Détection de création en temps réel](Detection_in_Real_time.png)
+![Détection de création en temps réel](images/Detection_in_Real_time.png)
 
-![Détection de création en temps réel](Detection_in_Real_time2.png)
+![Détection de création en temps réel](images/Detection_in_Real_time2.png)
 
 #### Modification de `/etc/passwd`
 
@@ -146,9 +146,9 @@ est détectée par comparaison de hash SHA-256.
 
 
 
-![Détection de modification de /etc/passwd](detection-modification-passwd.png)
+![Détection de modification de /etc/passwd](images/detection-modification-passwd.png)
 
-![Détection de modification de /etc/passwd](detection-modification-passwd2.png)
+![Détection de modification de /etc/passwd](images/detection-modification-passwd2.png)
 
 Un attaquant tente de créer un utilisateur :
 
@@ -158,7 +158,7 @@ sudo useradd uername
 
 Cette action peut être détectée et générer une alerte de sécurité.
 
-![Détection de modification de /etc/passwd](detection-modification-passwd3.png)
+![Détection de modification de /etc/passwd](images/detection-modification-passwd3.png)
 
 
 ### 2. Notifications email reçues
@@ -168,15 +168,15 @@ le type d'événement, le chemin du fichier, et les détails du changement.
 
 #### Email — création de fichier
 
-![Email d'alerte - création](email-creation.png)
+![Email d'alerte - création](images/email-creation.png)
 
 #### Email — suppression de fichier
 
-![Email d'alerte - suppression](email-suppression.png)
+![Email d'alerte - suppression](images/email-suppression.png)
 
 #### Email — modification de /etc/passwd
 
-![Email d'alerte - modification passwd](email-modification-passwd.png)
+![Email d'alerte - modification passwd](images/email-modification-passwd.png)
 
 ### Résultat
 
