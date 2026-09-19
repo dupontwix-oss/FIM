@@ -127,6 +127,12 @@ par le watcher, sans attendre le rescan périodique.
 sudo touch /etc/test-fim.txt
 ```
 
+#### Suppression de fichier
+
+```bash
+sudo rm /etc/test-fim.txt
+```
+
 ![Détection de création en temps réel](Detection_in_Real_time.png)
 
 #### Modification de `/etc/passwd`
@@ -135,19 +141,14 @@ Toute modification du fichier `/etc/passwd` — cible sensible classique pour
 la persistance d'un attaquant (ajout d'utilisateur, élévation de privilèges) —
 est détectée par comparaison de hash SHA-256.
 
-```bash
-sudo useradd testuser
-```
 
-![Détection de modification de /etc/passwd](images/detection-modification-passwd.png)
 
-#### Suppression de fichier
+![Détection de modification de /etc/passwd](detection-modification-passwd.png)
 
-```bash
-sudo rm /etc/test-fim.txt
-```
+![Détection de modification de /etc/passwd](detection-modification-passwd2.png)
 
-![Détection de suppression en temps réel](images/detection-suppression.png)
+![Détection de modification de /etc/passwd](detection-modification-passwd3.png)
+
 
 ### 2. Notifications email reçues
 
@@ -156,15 +157,15 @@ le type d'événement, le chemin du fichier, et les détails du changement.
 
 #### Email — création de fichier
 
-![Email d'alerte - création](images/email-creation.png)
+![Email d'alerte - création](email-creation.png)
 
 #### Email — suppression de fichier
 
-![Email d'alerte - suppression](images/email-suppression.png)
+![Email d'alerte - suppression](email-suppression.png)
 
 #### Email — modification de /etc/passwd
 
-![Email d'alerte - modification passwd](images/email-modification-passwd.png)
+![Email d'alerte - modification passwd](email-modification-passwd.png)
 
 ### Résultat
 
