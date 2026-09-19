@@ -143,9 +143,18 @@ est détectée par comparaison de hash SHA-256.
 
 
 
+
 ![Détection de modification de /etc/passwd](detection-modification-passwd.png)
 
 ![Détection de modification de /etc/passwd](detection-modification-passwd2.png)
+
+Un attaquant tente de créer un utilisateur :
+
+```bash
+sudo useradd uername
+```
+
+Cette action peut être détectée et générer une alerte de sécurité.
 
 ![Détection de modification de /etc/passwd](detection-modification-passwd3.png)
 
