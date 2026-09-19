@@ -135,6 +135,8 @@ sudo rm /etc/test-fim.txt
 
 ![Détection de création en temps réel](Detection_in_Real_time.png)
 
+![Détection de création en temps réel](Detection_in_Real_time2.png)
+
 #### Modification de `/etc/passwd`
 
 Toute modification du fichier `/etc/passwd` — cible sensible classique pour
